@@ -1,12 +1,50 @@
 <!doctype html>
-<html lang="en" data-ng-app="phonebookApp">
+<html lang="en" data-ng-app="mainApp">
   <head>
     <meta charset="utf-8">
     <title>AngularJS Drag and Drop</title>
     <link rel="stylesheet" href="app.css" />
   </head>
   <body data-ng-cloak>
+    <label>Введите имя:</label>
+    <input type="text" data-ng-model="name" placeholder="Enter your name"/>
+    <h1>Здравствуйте {{name}}</h1>
 
-    <script src="bower_components/angular/angular.js"></script>
+
+    <section data-ng-controller="mainController">
+      <h3>Products</h3>
+      <form>
+          <input type="text" data-ng-model="text" placeholder="Text" />
+          <input type="number" data-ng-model="price" placeholder="Price" />
+          <button data-ng-click="add(text, price)">+</button>
+      </form>
+      <table>
+        <thead>
+          <tr>
+            <th>Count</th>
+            <th>Text</th>
+            <th>Price</th>
+            <th>Done</th>
+          </tr>
+          <tr data-ng-repeat="item in items"
+              data-ng-class="$index === hoverIndex ? hoverClass : unhoverClass"
+              data-ng-mouseenter="mouse($event, $index)"
+              data-ng-mouseleave="mouse($event, $index)">
+            <td>
+              <button data-ng-click="plus(item)">+</button>
+              <span>{{item.count}}</span>
+              <button data-ng-click="minus(item)">-</button>
+            </td>
+            <td>{{item.purchase}}</td>
+            <td>{{item.price + 'Р'}}</td>
+            <td><input type="checkbox" data-ng-model="item.done"></td>
+          </tr>
+        </thead>
+      </table>
+    </section>
+    <script src="./bower_components/angular/angular.js"></script>
+    <script src="./model.js"></script>
+    <script src="./app.module.js"></script>
+    <script src="./main.controller.js"></script>
   </body>
 </html>
