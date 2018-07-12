@@ -1,9 +1,15 @@
-mainApp.controller('mainController', ['$scope', function($scope) {
+mainApp.controller('mainController', ['$scope', '$anchorScroll', 'catsFilter', function($scope, $anchorScroll, catsFilter) {
     $scope.items = model.items;
+    $scope.cats = catsFilter(model.cats);
 
     $scope.hoverClass = 'hover';
     $scope.unhoverClass = 'unhover';
     $scope.hoverIndex = -1;
+    $scope.sort = '-done';
+
+    $scope.myLoad = function() {
+        console.log('loaded-ng-include')
+    }
 
     $scope.plus = function plus(item) {
         item.count++;

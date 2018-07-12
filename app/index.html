@@ -13,6 +13,9 @@
 
     <section data-ng-controller="mainController">
       <h3>Products</h3>
+      <p>
+        <input type="text" data-ng-model="findPurchase" placeholder="find purchase"/>
+      </p>
       <form>
           <input type="text" data-ng-model="text" placeholder="Text" />
           <input type="number" data-ng-model="price" placeholder="Price" />
@@ -26,7 +29,7 @@
             <th>Price</th>
             <th>Done</th>
           </tr>
-          <tr data-ng-repeat="item in items"
+          <tr data-ng-repeat="item in items | orderBy:sort | filter:findPurchase"
               data-ng-class="$index === hoverIndex ? hoverClass : unhoverClass"
               data-ng-mouseenter="mouse($event, $index)"
               data-ng-mouseleave="mouse($event, $index)">
@@ -41,6 +44,20 @@
           </tr>
         </thead>
       </table>
+      <table>
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Sex</th>
+          </tr>
+          <tr data-ng-repeat="cat in cats">
+            <td>{{cat.name}}</td>
+            <td>{{cat.sex}}</td>
+          </tr>
+        </thead>
+      </table>
+      <div data-ng-bind="2 + 2">dfsfsdfdsf</div>
+      <div data-ng-include src="'./include.html'" data-onload="myLoad()" data-autoscroll='true'>ng-include</div>
     </section>
     <script src="./bower_components/angular/angular.js"></script>
     <script src="./model.js"></script>

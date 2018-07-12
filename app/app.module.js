@@ -2,11 +2,16 @@
 
 var mainApp = angular.module('mainApp', []);
 
-// Определить корневой модуль
-// Define controller
-// ng-model: text, price
-// btn add(text, price)
-// ng-repeat purchase, price, done(checkbox)
+mainApp.filter('cats', function() {
+    return (cats) => cats.map((cat) => ({
+            name: String(cat.name).toLowerCase(),
+            sex: String(cat.sex) === 'male' ? '♀' : '♂'
+        }))
+    
+})
 
-// model items : []
-// module, controller($scope)
+
+// {
+//     sex = String(cat['sex']) === 'male' ? '♀' : '♂',
+//     name = cat.name
+// }
